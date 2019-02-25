@@ -1,40 +1,47 @@
 package marketing.classes;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "fattura")
 public class Fattura {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idFattura")
+    private Integer idFattura;
 
-    private int id;
-    private int idOrdine;
-    private String metodoPagamento;
+    @Column(name ="idOrdine")
+    private Integer idOrdine;
 
-    public Fattura(int id,
-                   int idOrdine,
-                   String metodoPagamento) {
-        this.id = id;
-        this.idOrdine = idOrdine;
-        this.metodoPagamento = metodoPagamento;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "metodoPagamento")
+    private MetodoPagamento metodoPagamento;
+
+    public Fattura() {
     }
 
-    public int getId() {
-        return id;
+    public Integer getId() {
+        return idFattura;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(Integer id) {
+        this.idFattura = id;
     }
 
-    public int getIdOrdine() {
+    public Integer getIdOrdine() {
         return idOrdine;
     }
 
-    public void setIdOrdine(int idOrdine) {
+    public void setIdOrdine(Integer idOrdine) {
         this.idOrdine = idOrdine;
     }
 
-    public String getMetodoPagamento() {
+    public MetodoPagamento getMetodoPagamento() {
         return metodoPagamento;
     }
 
-    public void setMetodoPagamento(String metodoPagamento) {
+    public void setMetodoPagamento(MetodoPagamento metodoPagamento) {
         this.metodoPagamento = metodoPagamento;
     }
 
