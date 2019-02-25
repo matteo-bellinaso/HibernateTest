@@ -1,26 +1,49 @@
 package marketing.classes;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table (name="utente")
 public class Utente {
 
-    private int idUtente;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idUtente")
+    private Integer idUtente;
+
+    @Column(name="nome")
     private String nome;
+
+    @Column(name="cognome")
     private String cognome;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "pIva")
     private String pIva;
 
-    public Utente(int id, String nome, String cognome, String email, String partitaIVA) {
-        this.idUtente = id;
+    @OneToMany(mappedBy = "primaryKey.utente", cascade = CascadeType.ALL)
+    private List<ProdottoUtente> visite = new ArrayList<ProdottoUtente>();
+
+    public Utente(){
+
+    }
+
+    public Utente(String nome, String cognome, String email, String partitaIVA) {
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
         this.pIva = partitaIVA;
     }
 
-    public int getId() {
+    public Integer getId() {
         return idUtente;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.idUtente = id;
     }
 
@@ -55,4 +78,10 @@ public class Utente {
     public void setPartitaIVA(String partitaIVA) {
         this.pIva = partitaIVA;
     }
+
+    public List<ProdottoUtente> getVisite (){return visite;}
+
+    public void setVisite (List<ProdottoUtente> visite){this.visite = visite;}
+
+    public void addVisita(ProdottoUtente v){visite.add(v);}
 }

@@ -1,36 +1,72 @@
 package marketing.classes;
 
-import java.sql.Date;
+import javax.persistence.*;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity
+@Table (name ="prodotto")
 public class Prodotto {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name="idProdotto")
+    private Integer idProdotto;
+
+    @Column (name = "nome")
     private String nome;
-    private int idProduttore;
-    private float prezzo;
-    private int idCategorie;
+
+    @Column (name="idProduttore")
+    private Integer idProduttore;
+
+    @Column(name="prezzo")
+    private Double prezzo;
+
+    @Column(name = "idCategoria")
+    private Integer idCategorie;
+
+    @Column(name = "descrizione")
     private String descrizione;
+
+    @Column (name = "misure")
     private String misure;
-    private float peso;
+
+    @Column(name ="peso")
+    private Double peso;
+
+    @Column(name ="colore")
     private String colore;
+
+    @Column(name = "pathImmagini")
     private String pathImmagini;
+
+    @Column(name = "dataInizioValidità")
+    @Temporal(TemporalType.DATE)
     private Date dataInizioValidita;
+
+    @Column(name = "dataFineValidità")
+    @Temporal(TemporalType.DATE)
     private Date dateFineValidita;
 
-    public Prodotto(int id,
-                    String nome,
-                    int idProduttore,
-                    float prezzo,
-                    int idCategorie,
+    @OneToMany(mappedBy = "primaryKey.prodotto", cascade = CascadeType.ALL)
+    private List<ProdottoUtente> visite = new ArrayList<ProdottoUtente>();
+
+    public Prodotto(){
+
+    }
+    public Prodotto(String nome,
+                    Integer idProduttore,
+                    Double prezzo,
+                    Integer idCategorie,
                     String descrizione,
                     String misure,
-                    float peso,
+                    Double peso,
                     String colore,
                     String pathImmagini,
                     Date dataInizioValidita,
                     Date dateFineValidita) {
 
-        this.id = id;
         this.nome = nome;
         this.idProduttore = idProduttore;
         this.prezzo = prezzo;
@@ -44,12 +80,12 @@ public class Prodotto {
         this.dateFineValidita = dateFineValidita;
     }
 
-    public int getId() {
-        return id;
+    public Integer getId() {
+        return idProdotto;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(Integer idProdotto) {
+        this.idProdotto = idProdotto;
     }
 
     public String getNome() {
@@ -60,27 +96,27 @@ public class Prodotto {
         this.nome = nome;
     }
 
-    public int getIdProduttore() {
+    public Integer getIdProduttore() {
         return idProduttore;
     }
 
-    public void setIdProduttore(int idProduttore) {
+    public void setIdProduttore(Integer idProduttore) {
         this.idProduttore = idProduttore;
     }
 
-    public float getPrezzo() {
+    public Double getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(float prezzo) {
+    public void setPrezzo(Double prezzo) {
         this.prezzo = prezzo;
     }
 
-    public int getIdCategorie() {
+    public Integer getIdCategorie() {
         return idCategorie;
     }
 
-    public void setIdCategorie(int idCategorie) {
+    public void setIdCategorie(Integer idCategorie) {
         this.idCategorie = idCategorie;
     }
 
@@ -100,11 +136,11 @@ public class Prodotto {
         this.misure = misure;
     }
 
-    public float getPeso() {
+    public Double getPeso() {
         return peso;
     }
 
-    public void setPeso(float peso) {
+    public void setPeso(Double peso) {
         this.peso = peso;
     }
 
@@ -140,5 +176,9 @@ public class Prodotto {
         this.dateFineValidita = dateFineValidita;
     }
 
+    public List<ProdottoUtente> getVisite (){return visite;}
 
+    public void setVisite(List<ProdottoUtente> visite){this.visite = visite;}
+
+    public void addVisite(ProdottoUtente v){visite.add(v);}
 }
