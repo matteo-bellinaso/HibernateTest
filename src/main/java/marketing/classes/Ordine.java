@@ -1,28 +1,43 @@
 package marketing.classes;
 
-import java.sql.Date;
+import javax.persistence.*;
+import java.util.Date;
 
+@Entity
+@Table(name = "ordine")
 public class Ordine {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "idOrdine")
+    private Integer idOrdine;
+
+    @Column(name = "dataOrdine", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date dataOrdine;
-    private int idUtente;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name ="idUtente")
+    private Utente utente;
+
+    @Column(name = "stato", nullable = false)
     private String stato;
 
-    public Ordine(int id, int idUtente, Date dataOrdine, String stato) {
+    public Ordine(){
 
-        this.id = id;
+    }
+
+    public Ordine(Date dataOrdine, String stato) {
         this.dataOrdine = dataOrdine;
-        this.idUtente = idUtente;
         this.stato = stato;
     }
 
-    public int getId() {
-        return id;
+    public Integer getId() {
+        return idOrdine;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(Integer id) {
+        this.idOrdine = id;
     }
 
     public Date getDataOrdine() {
@@ -33,12 +48,12 @@ public class Ordine {
         this.dataOrdine = dataOrdine;
     }
 
-    public int getIdUtente() {
-        return idUtente;
+    public Utente getUtente() {
+        return utente;
     }
 
-    public void setIdUtente(int idUtente) {
-        this.idUtente = idUtente;
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 
     public String getStato() {

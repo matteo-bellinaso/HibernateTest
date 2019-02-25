@@ -28,6 +28,9 @@ public class Utente {
     @OneToMany(mappedBy = "primaryKey.utente", cascade = CascadeType.ALL)
     private List<ProdottoUtente> visite = new ArrayList<ProdottoUtente>();
 
+    @OneToMany(mappedBy = "utente", fetch = FetchType.LAZY)
+    private List<Ordine> ordini = new ArrayList<Ordine>();
+
     public Utente(){
 
     }
@@ -84,4 +87,15 @@ public class Utente {
     public void setVisite (List<ProdottoUtente> visite){this.visite = visite;}
 
     public void addVisita(ProdottoUtente v){visite.add(v);}
+
+    public List<Ordine> getOrdini() {return ordini;}
+
+    public void setOrdini (List<Ordine> ordini) { this.ordini = ordini;}
+
+    @PreRemove
+    public void removeForeignKey() {
+        for (Ordine ordine : ordini) {
+            ordine.setUtente(null);
+        }
+    }
 }

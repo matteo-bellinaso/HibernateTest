@@ -38,14 +38,14 @@ public class Prodotto {
     @Column(name ="colore")
     private String colore;
 
-    @Column(name = "pathImmagini")
+    @Column(name = "pathImmagini", nullable = false)
     private String pathImmagini;
 
-    @Column(name = "dataInizioValidità")
+    @Column(name = "dataInizioValidità", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataInizioValidita;
 
-    @Column(name = "dataFineValidità")
+    @Column(name = "dataFineValidità", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dateFineValidita;
 
