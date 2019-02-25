@@ -14,19 +14,19 @@ public class Prodotto {
     @Column (name="idProdotto")
     private Integer idProdotto;
 
-    @Column (name = "nome")
+    @Column (name = "nome", nullable = false)
     private String nome;
 
-    @Column (name="idProduttore")
+    @Column (name="idProduttore", nullable = false)
     private Integer idProduttore;
 
-    @Column(name="prezzo")
+    @Column(name="prezzo", nullable = false)
     private Double prezzo;
 
-    @Column(name = "idCategoria")
+    @Column(name = "idCategoria", nullable = false)
     private Integer idCategorie;
 
-    @Column(name = "descrizione")
+    @Column(name = "descrizione", nullable = false)
     private String descrizione;
 
     @Column (name = "misure")

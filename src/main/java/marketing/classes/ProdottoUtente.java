@@ -15,7 +15,7 @@ public class ProdottoUtente {
     @EmbeddedId
     private ProdottoUtenteKey primaryKey = new ProdottoUtenteKey();
 
-    @Column(name = "dataVisita")
+    @Column(name = "dataVisita", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataVisita;
 

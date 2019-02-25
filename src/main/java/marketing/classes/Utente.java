@@ -13,13 +13,13 @@ public class Utente {
     @Column(name = "idUtente")
     private Integer idUtente;
 
-    @Column(name="nome")
+    @Column(name="nome", nullable = false)
     private String nome;
 
-    @Column(name="cognome")
+    @Column(name="cognome", nullable = false)
     private String cognome;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
     @Column(name = "pIva")
