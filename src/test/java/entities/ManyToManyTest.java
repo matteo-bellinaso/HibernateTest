@@ -1,8 +1,6 @@
 package entities;
 
-import marketing.classes.Prodotto;
-import marketing.classes.ProdottoUtente;
-import marketing.classes.Utente;
+import marketing.classes.*;
 import org.junit.Test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,7 +12,7 @@ import utils.TestUtil;
 public class ManyToManyTest extends TestUtil {
 
     @Test
-    public void insert1() throws ParseException {
+    public void insertProdottoUtente() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Prodotto prodotto = new Prodotto("Cover", 5, 10.0, 5, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"),  dateFormat.parse("2019-02-30"));
         Utente utente = new Utente("Gabriele", "Moia", "vdbfuegrnth", "vufesbgjrnthm");
@@ -26,6 +24,24 @@ public class ManyToManyTest extends TestUtil {
         em.getTransaction().begin();
         em.persist(prodotto);
         em.persist(utente);
+        em.getTransaction().commit();
+    }
+
+    @Test
+    public void insertProdottoEvento() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Prodotto prodotto = new Prodotto("Mele", 5, 10.0, 5, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"),  dateFormat.parse("2019-02-30"));
+        Evento evento = new Evento();
+        evento.setNome("Natale");
+        evento.setDataInizio(dateFormat.parse("2019-12-04"));
+        evento.setDataFine(dateFormat.parse("2019-12-26"));
+        ProdottoEvento prodottoEvento = new ProdottoEvento();
+        prodottoEvento.setEvento(evento);
+        prodottoEvento.setProdotto(prodotto);
+        evento.addProdottoEvento(prodottoEvento);
+        em.getTransaction().begin();
+        em.persist(prodotto);
+        em.persist(evento);
         em.getTransaction().commit();
     }
 
@@ -70,7 +86,7 @@ public class ManyToManyTest extends TestUtil {
 
     @Test
     public void testDeleteProdotto() {
-        Prodotto f = em.find(Prodotto.class, 2);
+        Prodotto f = em.find(Prodotto.class, 3);
         em.getTransaction().begin();
         em.remove(f);
         em.getTransaction().commit();
