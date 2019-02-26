@@ -16,7 +16,7 @@ public class TestUtil {
     }
 
     @AfterClass
-    public static void closeEm(){
+    public static void closeEm() {
         em.close();
         Em.closeEntityManager();
     }

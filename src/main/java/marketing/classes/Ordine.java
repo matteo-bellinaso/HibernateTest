@@ -1,7 +1,9 @@
 package marketing.classes;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "ordine")
@@ -22,6 +24,9 @@ public class Ordine {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "idUtente")
     private Utente utente;
+
+    @OneToMany(mappedBy = "primaryKey.ordine", cascade = CascadeType.REMOVE)
+    private List<ProdottoOrdine> prodottoOrdine = new ArrayList<ProdottoOrdine>();
 
     @Column(name = "stato", nullable = false)
     private String stato;
@@ -75,4 +80,15 @@ public class Ordine {
         this.fattura = fattura;
     }
 
+    public List<ProdottoOrdine> getProdottoOrdine() {
+        return prodottoOrdine;
+    }
+
+    public void setProdottoOrdine(List<ProdottoOrdine> prodottoOrdine) {
+        this.prodottoOrdine = prodottoOrdine;
+    }
+
+    public void addProdottoOrdine(ProdottoOrdine prodottoOrdine) {
+        this.prodottoOrdine.add(prodottoOrdine);
+    }
 }

@@ -55,8 +55,14 @@ public class Prodotto {
     @OneToMany(mappedBy = "primaryKey.prodotto", cascade = CascadeType.ALL)
     private List<ProdottoEvento> prodottoEvento = new ArrayList<ProdottoEvento>();
 
+    @OneToMany(mappedBy = "primaryKey.prodotto", cascade = CascadeType.ALL)
+    private List<ProdottoOrdine> prodottoOrdine = new ArrayList<ProdottoOrdine>();
+
     @OneToMany(mappedBy = "prodotto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Recensione> recensioni = new ArrayList<Recensione>();
+
+    @OneToMany(mappedBy = "prodotto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<TagProdotto> tagProdotto = new ArrayList<TagProdotto>();
 
     public Prodotto() {
 
@@ -191,7 +197,7 @@ public class Prodotto {
         this.recensioni = recensioni;
     }
 
-    public List<ProdottoUtente> getVisite() {
+    /*public List<ProdottoUtente> getVisite() {
         return visite;
     }
 
@@ -202,6 +208,7 @@ public class Prodotto {
     public void addVisite(ProdottoUtente v) {
         visite.add(v);
     }
+
     public List<ProdottoEvento> getProdottoEvento() {
         return prodottoEvento;
     }
@@ -210,8 +217,19 @@ public class Prodotto {
         this.prodottoEvento = prodottoEvento;
     }
 
-    public void addProdottoEvento (ProdottoEvento pe) {
+    public void addProdottoEvento(ProdottoEvento pe) {
         prodottoEvento.add(pe);
     }
 
+    public List<ProdottoOrdine> getProdottoOrdine() {
+        return prodottoOrdine;
+    }
+
+    public void setProdottoOrdine(List<ProdottoOrdine> prodottoOrdine) {
+        this.prodottoOrdine = prodottoOrdine;
+    }
+
+    public void addProdottoOrdine(ProdottoOrdine prodottoOrdine) {
+        this.prodottoOrdine.add(prodottoOrdine);
+    }*/
 }

@@ -1,45 +1,46 @@
 package marketing.classes;
 
+import marketing.classes.Keys.ProdottoOrdineKey;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "prodotto_ordine")
+@AssociationOverrides({
+        @AssociationOverride(name = "primaryKey.ordine",
+                joinColumns = @JoinColumn(name = "idOrdine")),
+        @AssociationOverride(name = "primaryKey.prodotto",
+                joinColumns = @JoinColumn(name = "idProdotto"))
+})
 public class ProdottoOrdine {
 
-    private int idProdotto;
-    private int idOrdine;
-    private int quantità;
+    @EmbeddedId
+    private ProdottoOrdineKey primaryKey = new ProdottoOrdineKey();
 
-    public ProdottoOrdine(int idProdotto, int idOrdine, int quantità) {
-        super();
-        this.idProdotto = idProdotto;
-        this.idOrdine = idOrdine;
-        this.quantità = quantità;
+    public ProdottoOrdineKey getPrimaryKey() {
+        return primaryKey;
     }
 
-
-    public int getIdProdotto() {
-        return idProdotto;
+    public void setPrimaryKey(ProdottoOrdineKey pk) {
+        this.primaryKey = pk;
     }
 
-
-    public void setIdProdotto(int idProdotto) {
-        this.idProdotto = idProdotto;
+    @Transient
+// Hibernate doesn’t try to map these getters. These getters are provided for convenience in case we want to obtain a specific side of the relationship
+    public Prodotto getProdotto() {
+        return primaryKey.getProdotto();
     }
 
-
-    public int getIdOrdine() {
-        return idOrdine;
+    public void setProdotto(Prodotto prodotto) {
+        primaryKey.setProdotto(prodotto);
     }
 
-
-    public void setIdOrdine(int idOrdine) {
-        this.idOrdine = idOrdine;
+    @Transient
+    public Ordine getOrdine() {
+        return primaryKey.getOrdine();
     }
 
-
-    public int getQuantità() {
-        return quantità;
-    }
-
-
-    public void setQuantità(int quantità) {
-        this.quantità = quantità;
+    public void setOrdine(Ordine ordine) {
+        primaryKey.setOrdine(ordine);
     }
 }

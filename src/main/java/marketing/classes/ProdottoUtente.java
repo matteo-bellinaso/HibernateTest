@@ -1,5 +1,7 @@
 package marketing.classes;
 
+import marketing.classes.Keys.ProdottoUtenteKey;
+
 import javax.persistence.*;
 import java.util.Date;
 

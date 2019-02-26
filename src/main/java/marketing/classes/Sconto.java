@@ -1,30 +1,44 @@
 package marketing.classes;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "sconto")
 public class Sconto {
 
-    private int idSconto;
-    private int percentuale;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idSconto")
+    private Integer idSconto;
+
+    @Column(name = "percentuale", nullable = false)
+    private Integer percentuale;
+
+    @Column(name = "commento")
     private String commento;
 
-    public Sconto(int idSconto, int percentuale, String commento) {
-        this.idSconto = idSconto;
+    public Sconto() {
+
+    }
+
+    public Sconto(Integer percentuale, String commento) {
         this.percentuale = percentuale;
         this.commento = commento;
     }
 
-    public int getIdSconto() {
+    public Integer getIdSconto() {
         return idSconto;
     }
 
-    public void setIdSconto(int idSconto) {
+    public void setIdSconto(Integer idSconto) {
         this.idSconto = idSconto;
     }
 
-    public int getPercentuale() {
+    public Integer getPercentuale() {
         return percentuale;
     }
 
-    public void setPercentuale(int percentuale) {
+    public void setPercentuale(Integer percentuale) {
         this.percentuale = percentuale;
     }
 

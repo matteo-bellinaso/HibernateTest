@@ -1,27 +1,26 @@
-package marketing.classes;
+package marketing.classes.Keys;
 
+import marketing.classes.Evento;
+import marketing.classes.Ordine;
 import marketing.classes.Prodotto;
-import marketing.classes.Utente;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
-@Embeddable
-public class ProdottoUtenteKey implements Serializable {
+public class ProdottoOrdineKey implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Utente utente;
+    private Ordine ordine;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Prodotto prodotto;
 
-    public Utente getUtente() {
-        return utente;
+    public Ordine getOrdine() {
+        return ordine;
     }
 
-    public void setUtente(Utente utente) {
-        this.utente = utente;
+    public void setOrdine(Ordine ordine) {
+        this.ordine = ordine;
     }
 
     public Prodotto getProdotto() {

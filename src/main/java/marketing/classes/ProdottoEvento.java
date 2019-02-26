@@ -1,5 +1,7 @@
 package marketing.classes;
 
+import marketing.classes.Keys.ProdottoEventoKey;
+
 import javax.persistence.*;
 
 @Entity

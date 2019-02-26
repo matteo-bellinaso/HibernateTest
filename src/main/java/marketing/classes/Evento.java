@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @Table(name = "evento")
 public class Evento {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idEvento")
@@ -28,7 +28,7 @@ public class Evento {
     @OneToMany(mappedBy = "primaryKey.evento", cascade = CascadeType.ALL)
     private List<ProdottoEvento> prodottoEvento = new ArrayList<ProdottoEvento>();
 
-    public Evento(){
+    public Evento() {
 
     }
 
@@ -43,14 +43,14 @@ public class Evento {
     }
 
     public void setIdEvento(Integer idEvento) {
-        this.idEvento= idEvento;
+        this.idEvento = idEvento;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome (String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -58,7 +58,7 @@ public class Evento {
         return dataInizio;
     }
 
-    public void setDataInizio (Date dataInizio) {
+    public void setDataInizio(Date dataInizio) {
         this.dataInizio = dataInizio;
     }
 
@@ -78,7 +78,7 @@ public class Evento {
         this.prodottoEvento = prodottoEvento;
     }
 
-    public void addProdottoEvento (ProdottoEvento pe) {
+    public void addProdottoEvento(ProdottoEvento pe) {
         prodottoEvento.add(pe);
     }
 }

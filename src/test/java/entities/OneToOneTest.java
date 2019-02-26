@@ -16,7 +16,7 @@ public class OneToOneTest extends TestUtil {
     public void insert() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        Ordine ordine = new Ordine(dateFormat.parse("2018-05-22"),"in consegna");
+        Ordine ordine = new Ordine(dateFormat.parse("2018-05-22"), "in consegna");
         Fattura fattura = new Fattura();
         fattura.setOrdine(ordine);
         ordine.setFattura(fattura);

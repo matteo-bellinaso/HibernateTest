@@ -15,10 +15,10 @@ public class Recensione {
     @JoinColumn(name = "idProdotto")
     private Prodotto prodotto;
 
-    @Column(name = "descrizione")
+    @Column(name = "descrizione", nullable = false)
     private String descrizione;
 
-    @Column(name = "voto")
+    @Column(name = "voto", nullable = false)
     private Integer voto;
 
     public Recensione() {

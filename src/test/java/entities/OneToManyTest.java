@@ -48,7 +48,7 @@ public class OneToManyTest extends TestUtil {
     @Test
     public void insertProdottoRecensione() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Prodotto prodotto = new Prodotto("Forbice", 5, 10.0, 5, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"),  dateFormat.parse("2019-02-30"));
+        Prodotto prodotto = new Prodotto("Forbice", 5, 10.0, 5, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"), dateFormat.parse("2019-02-30"));
         Recensione recensione = new Recensione("Bello", 6);
 
         recensione.setProdotto(prodotto);
@@ -63,7 +63,6 @@ public class OneToManyTest extends TestUtil {
             em.getTransaction().rollback();
         }
     }
-
 
 
     @Test

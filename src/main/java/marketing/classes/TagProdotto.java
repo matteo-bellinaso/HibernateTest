@@ -1,29 +1,48 @@
 package marketing.classes;
 
+import marketing.classes.Keys.ProdottoEventoKey;
+import marketing.classes.Keys.TagProdottoKey;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "prodotto_tag")
+@AssociationOverrides({
+        @AssociationOverride(name = "primaryKey.tag",
+                joinColumns = @JoinColumn(name = "nome")),
+        @AssociationOverride(name = "primaryKey.prodotto",
+                joinColumns = @JoinColumn(name = "idProdotto"))
+})
 public class TagProdotto {
 
-    private int nome;
-    private int idProdotto;
+    @EmbeddedId
+    private TagProdottoKey primaryKey = new TagProdottoKey();
 
-    public TagProdotto(int nome, int idProdotto) {
-        this.nome = nome;
-        this.idProdotto = idProdotto;
+    public TagProdottoKey getPrimaryKey() {
+        return primaryKey;
     }
 
-    public int getNome() {
-        return nome;
+    public void setPrimaryKey(TagProdottoKey pk) {
+        this.primaryKey = pk;
     }
 
-    public int getIdProdotto() {
-        return idProdotto;
+    @Transient
+// Hibernate doesn’t try to map these getters. These getters are provided for convenience in case we want to obtain a specific side of the relationship
+    public Prodotto getProdotto() {
+        return primaryKey.getProdotto();
     }
 
-    public void setIdTag(int nome) {
-        this.nome = nome;
+    public void setProdotto(Prodotto prodotto) {
+        primaryKey.setProdotto(prodotto);
     }
 
-    public void setIdProdotto(int idProdotto) {
-        this.idProdotto = idProdotto;
+    @Transient
+    public Tag getTag() {
+        return primaryKey.getTag();
+    }
+
+    public void setTag(Tag tag) {
+        primaryKey.setTag(tag);
     }
 }
 

@@ -2,6 +2,7 @@ package entities;
 
 import marketing.classes.*;
 import org.junit.Test;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,7 +15,7 @@ public class ManyToManyTest extends TestUtil {
     @Test
     public void insertProdottoUtente() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Prodotto prodotto = new Prodotto("Cover", 5, 10.0, 5, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"),  dateFormat.parse("2019-02-30"));
+        Prodotto prodotto = new Prodotto("Cover", 5, 10.0, 5, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"), dateFormat.parse("2019-02-30"));
         Utente utente = new Utente("Gabriele", "Moia", "vdbfuegrnth", "vufesbgjrnthm");
         ProdottoUtente prodottoUtente = new ProdottoUtente();
         prodottoUtente.setUtente(utente);
@@ -30,14 +31,14 @@ public class ManyToManyTest extends TestUtil {
     @Test
     public void insertProdottoEvento() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Prodotto prodotto = new Prodotto("Mele", 5, 10.0, 5, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"),  dateFormat.parse("2019-02-30"));
+        Prodotto prodotto = new Prodotto("Mele", 5, 10.0, 5, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"), dateFormat.parse("2019-02-30"));
         Evento evento = new Evento();
         evento.setNome("Natale");
         evento.setDataInizio(dateFormat.parse("2019-12-04"));
         evento.setDataFine(dateFormat.parse("2019-12-26"));
         ProdottoEvento prodottoEvento = new ProdottoEvento();
-        prodottoEvento.setEvento(evento);
         prodottoEvento.setProdotto(prodotto);
+        prodottoEvento.setEvento(evento);
         evento.addProdottoEvento(prodottoEvento);
         em.getTransaction().begin();
         em.persist(prodotto);
@@ -45,35 +46,20 @@ public class ManyToManyTest extends TestUtil {
         em.getTransaction().commit();
     }
 
-    /*@Test
-    public void insert2() {
-        Prodotto p = new Prodotto();
-        Fornitore f = new Fornitore("ciao");
-        Fornitura fornitura = new Fornitura();
-        fornitura.setFornitore(f);
-        fornitura.setProdotto(p);
-        fornitura.setDate(new Date());
-        fornitura.setQuantita(3);
-        f.addFornitura(fornitura);
+    @Test
+    public void insertProdottoOrdine() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Prodotto prodotto = new Prodotto("Cactus", 5, 10.0, 5, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"), dateFormat.parse("2019-02-30"));
+        Ordine ordine = new Ordine(dateFormat.parse("2018-05-18"), "Consegnato");
+        ProdottoOrdine prodottoOrdine = new ProdottoOrdine();
+        prodottoOrdine.setOrdine(ordine);
+        prodottoOrdine.setProdotto(prodotto);
+        ordine.addProdottoOrdine(prodottoOrdine);
         em.getTransaction().begin();
-        em.persist(p);
-        em.persist(f);
+        em.persist(prodotto);
+        em.persist(ordine);
         em.getTransaction().commit();
     }
-
-    @Test
-    public void insertAlreadyExisting() {
-        Prodotto p = getProdotto(1);
-        Fornitore f = getFornitore(3);
-        Fornitura fornitura = new Fornitura();
-        fornitura.setFornitore(f);
-        fornitura.setProdotto(p);
-        fornitura.setDate(new Date());
-        fornitura.setQuantita(3);
-        em.getTransaction().begin();
-        em.persist(fornitura);
-        em.getTransaction().commit();
-    }*/
 
     //cancella anche dalla tabella di relazione
     @Test
@@ -86,12 +72,27 @@ public class ManyToManyTest extends TestUtil {
 
     @Test
     public void testDeleteProdotto() {
-        Prodotto f = em.find(Prodotto.class, 3);
+        Prodotto f = em.find(Prodotto.class, 1);
         em.getTransaction().begin();
         em.remove(f);
         em.getTransaction().commit();
     }
 
+    @Test
+    public void testDeleteOrdine() {
+        Ordine f = em.find(Ordine.class, 2);
+        em.getTransaction().begin();
+        em.remove(f);
+        em.getTransaction().commit();
+    }
+
+    @Test
+    public void testDeleteEvento() {
+        Evento f = em.find(Evento.class, 1);
+        em.getTransaction().begin();
+        em.remove(f);
+        em.getTransaction().commit();
+    }
     //se si us il mapped anziche il join column si rompe quando cerchi di cancellare l'entità perchè violi i vincoli di chiave esterna
     /*@Test
     public void testDeleteProdotto() {
