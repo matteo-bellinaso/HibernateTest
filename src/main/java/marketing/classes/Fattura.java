@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "fattura")
 public class Fattura {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idFattura")
@@ -16,7 +16,7 @@ public class Fattura {
     private Ordine ordine;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name ="metodoPagamento")
+    @JoinColumn(name = "metodoPagamento")
     private MetodoPagamento metodoPagamento;
 
     public Fattura() {

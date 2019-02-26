@@ -1,37 +1,50 @@
 package marketing.classes;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "recensione")
 public class Recensione {
 
-    private int idRecensione;
-    private int idProdotto;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idRecensione")
+    private Integer idRecensione;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "idProdotto")
+    private Prodotto prodotto;
+
+    @Column(name = "descrizione")
     private String descrizione;
-    private int voto;
 
-    public Recensione(int idRecensione,
-                      int idProdotto,
-                      String descrizione,
-                      int voto) {
+    @Column(name = "voto")
+    private Integer voto;
 
-        this.idRecensione = idRecensione;
-        this.idProdotto = idProdotto;
+    public Recensione() {
+
+    }
+
+    public Recensione(String descrizione,
+                      Integer voto) {
         this.descrizione = descrizione;
         this.voto = voto;
     }
 
-    public int getIdRecensione() {
+    public Integer getIdRecensione() {
         return idRecensione;
     }
 
-    public void setIdUtente(int idRecensione) {
+    public void setIdUtente(Integer idRecensione) {
         this.idRecensione = idRecensione;
     }
 
-    public int getIdProdotto() {
-        return idProdotto;
+    public Prodotto getProdotto() {
+        return prodotto;
     }
 
-    public void setIdProdotto(int idProdotto) {
-        this.idProdotto = idProdotto;
+    public void setProdotto(Prodotto prodotto) {
+        this.prodotto = prodotto;
     }
 
     public String getDescrizione() {
@@ -42,11 +55,11 @@ public class Recensione {
         this.descrizione = descrizione;
     }
 
-    public int getVoto() {
+    public Integer getVoto() {
         return voto;
     }
 
-    public void setVoto(int voto) {
+    public void setVoto(Integer voto) {
         this.voto = voto;
     }
 

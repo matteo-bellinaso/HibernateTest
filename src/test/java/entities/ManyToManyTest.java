@@ -68,6 +68,14 @@ public class ManyToManyTest extends TestUtil {
         em.getTransaction().commit();
     }
 
+    @Test
+    public void testDeleteProdotto() {
+        Prodotto f = em.find(Prodotto.class, 2);
+        em.getTransaction().begin();
+        em.remove(f);
+        em.getTransaction().commit();
+    }
+
     //se si us il mapped anziche il join column si rompe quando cerchi di cancellare l'entità perchè violi i vincoli di chiave esterna
     /*@Test
     public void testDeleteProdotto() {

@@ -9,10 +9,10 @@ public class Ordine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "idOrdine")
+    @Column(name = "idOrdine")
     private Integer idOrdine;
 
-    @OneToOne(mappedBy = "ordine" , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "ordine", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Fattura fattura;
 
     @Column(name = "dataOrdine", nullable = false)
@@ -20,13 +20,13 @@ public class Ordine {
     private Date dataOrdine;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name ="idUtente")
+    @JoinColumn(name = "idUtente")
     private Utente utente;
 
     @Column(name = "stato", nullable = false)
     private String stato;
 
-    public Ordine(){
+    public Ordine() {
 
     }
 
@@ -67,8 +67,12 @@ public class Ordine {
         this.stato = stato;
     }
 
-    public Fattura getFattura() { return fattura; }
+    public Fattura getFattura() {
+        return fattura;
+    }
 
-    public void setFattura(Fattura fattura){this.fattura = fattura;}
+    public void setFattura(Fattura fattura) {
+        this.fattura = fattura;
+    }
 
 }

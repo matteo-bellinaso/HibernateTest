@@ -10,15 +10,14 @@ public class Em {
 
     private final static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("marketing");
 
-    public static EntityManager createEntityManager(){
+    public static EntityManager createEntityManager() {
         return entityManagerFactory.createEntityManager();
     }
 
 
-    public static void closeEntityManager(){
+    public static void closeEntityManager() {
         entityManagerFactory.close();
     }
-
 
 
 }

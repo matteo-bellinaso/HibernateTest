@@ -6,21 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table (name ="prodotto")
+@Table(name = "prodotto")
 public class Prodotto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name="idProdotto")
+    @Column(name = "idProdotto")
     private Integer idProdotto;
 
-    @Column (name = "nome", nullable = false)
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column (name="idProduttore", nullable = false)
+    @Column(name = "idProduttore", nullable = false)
     private Integer idProduttore;
 
-    @Column(name="prezzo", nullable = false)
+    @Column(name = "prezzo", nullable = false)
     private Double prezzo;
 
     @Column(name = "idCategoria", nullable = false)
@@ -29,13 +29,13 @@ public class Prodotto {
     @Column(name = "descrizione", nullable = false)
     private String descrizione;
 
-    @Column (name = "misure")
+    @Column(name = "misure")
     private String misure;
 
-    @Column(name ="peso")
+    @Column(name = "peso")
     private Double peso;
 
-    @Column(name ="colore")
+    @Column(name = "colore")
     private String colore;
 
     @Column(name = "pathImmagini", nullable = false)
@@ -52,9 +52,13 @@ public class Prodotto {
     @OneToMany(mappedBy = "primaryKey.prodotto", cascade = CascadeType.ALL)
     private List<ProdottoUtente> visite = new ArrayList<ProdottoUtente>();
 
-    public Prodotto(){
+    @OneToMany(mappedBy = "prodotto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Recensione> recensioni = new ArrayList<Recensione>();
+
+    public Prodotto() {
 
     }
+
     public Prodotto(String nome,
                     Integer idProduttore,
                     Double prezzo,
@@ -176,9 +180,23 @@ public class Prodotto {
         this.dateFineValidita = dateFineValidita;
     }
 
-    public List<ProdottoUtente> getVisite (){return visite;}
+    public List<Recensione> getProdotti() {
+        return recensioni;
+    }
 
-    public void setVisite(List<ProdottoUtente> visite){this.visite = visite;}
+    public void setProdotti(List<Recensione> recensioni) {
+        this.recensioni = recensioni;
+    }
 
-    public void addVisite(ProdottoUtente v){visite.add(v);}
+    public List<ProdottoUtente> getVisite() {
+        return visite;
+    }
+
+    public void setVisite(List<ProdottoUtente> visite) {
+        this.visite = visite;
+    }
+
+    public void addVisite(ProdottoUtente v) {
+        visite.add(v);
+    }
 }

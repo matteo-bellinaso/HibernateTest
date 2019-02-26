@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table (name="utente")
+@Table(name = "utente")
 public class Utente {
 
     @Id
@@ -13,10 +13,10 @@ public class Utente {
     @Column(name = "idUtente")
     private Integer idUtente;
 
-    @Column(name="nome", nullable = false)
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name="cognome", nullable = false)
+    @Column(name = "cognome", nullable = false)
     private String cognome;
 
     @Column(name = "email", nullable = false)
@@ -31,7 +31,7 @@ public class Utente {
     @OneToMany(mappedBy = "utente", fetch = FetchType.LAZY)
     private List<Ordine> ordini = new ArrayList<Ordine>();
 
-    public Utente(){
+    public Utente() {
 
     }
 
@@ -82,15 +82,25 @@ public class Utente {
         this.pIva = partitaIVA;
     }
 
-    public List<ProdottoUtente> getVisite (){return visite;}
+    public List<ProdottoUtente> getVisite() {
+        return visite;
+    }
 
-    public void setVisite (List<ProdottoUtente> visite){this.visite = visite;}
+    public void setVisite(List<ProdottoUtente> visite) {
+        this.visite = visite;
+    }
 
-    public void addVisita(ProdottoUtente v){visite.add(v);}
+    public void addVisita(ProdottoUtente v) {
+        visite.add(v);
+    }
 
-    public List<Ordine> getOrdini() {return ordini;}
+    public List<Ordine> getOrdini() {
+        return ordini;
+    }
 
-    public void setOrdini (List<Ordine> ordini) { this.ordini = ordini;}
+    public void setOrdini(List<Ordine> ordini) {
+        this.ordini = ordini;
+    }
 
     @PreRemove
     public void removeForeignKey() {

@@ -6,7 +6,7 @@ public class Sconto {
     private int percentuale;
     private String commento;
 
-    public Sconto (int idSconto, int percentuale, String commento) {
+    public Sconto(int idSconto, int percentuale, String commento) {
         this.idSconto = idSconto;
         this.percentuale = percentuale;
         this.commento = commento;
