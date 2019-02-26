@@ -10,8 +10,8 @@ public class MetodoPagamento {
     @Column (name = "metodoPagamento")
     private String metodoPagamento;
 
-    @OneToOne(mappedBy = "metodoPagamento", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = false)
+    @OneToOne(mappedBy = "metodoPagamento",
+            fetch = FetchType.LAZY)
     private Fattura fattura;
 
     public MetodoPagamento(){

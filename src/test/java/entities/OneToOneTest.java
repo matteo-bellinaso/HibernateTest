@@ -19,7 +19,6 @@ public class OneToOneTest extends TestUtil {
         fattura.setMetodoPagamento(metodoPagamento);
 
         try {
-
             em.getTransaction().begin();
             em.persist(fattura);
             em.getTransaction().commit();
@@ -28,5 +27,31 @@ public class OneToOneTest extends TestUtil {
             System.out.println("Errore: " + e.getMessage());
             em.getTransaction().rollback();
         }
+    }
+
+    @Test
+    public void insert2() throws ParseException {
+        MetodoPagamento metodoPagamento = new MetodoPagamento("Paypal");
+        Fattura fattura = new Fattura();
+        fattura.setMetodoPagamento(metodoPagamento);
+
+        try {
+            em.getTransaction().begin();
+            em.persist(fattura);
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            System.out.println("Errore: " + e.getMessage());
+            em.getTransaction().rollback();
+        }
+    }
+
+
+    @Test
+    public void testDeleteFattura() {
+        Fattura f = em.find(Fattura.class, 3);
+        em.getTransaction().begin();
+        em.remove(f);
+        em.getTransaction().commit();
     }
 }
