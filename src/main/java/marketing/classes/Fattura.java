@@ -11,11 +11,12 @@ public class Fattura {
     @Column(name = "idFattura")
     private Integer idFattura;
 
-    @Column(name ="idOrdine")
-    private Integer idOrdine;
-
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "metodoPagamento")
+    @JoinColumn(name = "idOrdine")
+    private Ordine ordine;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name ="metodoPagamento")
     private MetodoPagamento metodoPagamento;
 
     public Fattura() {
@@ -29,12 +30,12 @@ public class Fattura {
         this.idFattura = id;
     }
 
-    public Integer getIdOrdine() {
-        return idOrdine;
+    public Ordine getOrdine() {
+        return ordine;
     }
 
-    public void setIdOrdine(Integer idOrdine) {
-        this.idOrdine = idOrdine;
+    public void setOrdine(Ordine ordine) {
+        this.ordine = ordine;
     }
 
     public MetodoPagamento getMetodoPagamento() {

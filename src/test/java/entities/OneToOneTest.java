@@ -14,29 +14,16 @@ public class OneToOneTest extends TestUtil {
 
     @Test
     public void insert() throws ParseException {
-        MetodoPagamento metodoPagamento = new MetodoPagamento("Carta di credito");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Ordine ordine = new Ordine(dateFormat.parse("2018-05-22"),"in consegna");
         Fattura fattura = new Fattura();
-        fattura.setMetodoPagamento(metodoPagamento);
+        fattura.setOrdine(ordine);
+        ordine.setFattura(fattura);
 
         try {
             em.getTransaction().begin();
-            em.persist(fattura);
-            em.getTransaction().commit();
-
-        } catch (Exception e) {
-            System.out.println("Errore: " + e.getMessage());
-            em.getTransaction().rollback();
-        }
-    }
-
-    @Test
-    public void insert2() throws ParseException {
-        MetodoPagamento metodoPagamento = new MetodoPagamento("Paypal");
-        Fattura fattura = new Fattura();
-        fattura.setMetodoPagamento(metodoPagamento);
-
-        try {
-            em.getTransaction().begin();
+            em.persist(ordine);
             em.persist(fattura);
             em.getTransaction().commit();
 
@@ -49,9 +36,19 @@ public class OneToOneTest extends TestUtil {
 
     @Test
     public void testDeleteFattura() {
-        Fattura f = em.find(Fattura.class, 3);
+        Fattura f = em.find(Fattura.class, 19);
         em.getTransaction().begin();
         em.remove(f);
         em.getTransaction().commit();
     }
+
+    @Test
+    public void testDeleteOrdine() {
+        Ordine f = em.find(Ordine.class, 8);
+        em.getTransaction().begin();
+        em.remove(f);
+        em.getTransaction().commit();
+    }
+
+
 }

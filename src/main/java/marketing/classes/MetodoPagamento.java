@@ -1,6 +1,8 @@
 package marketing.classes;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table (name = "metodo_pagamento")
@@ -10,9 +12,8 @@ public class MetodoPagamento {
     @Column (name = "metodoPagamento")
     private String metodoPagamento;
 
-    @OneToOne(mappedBy = "metodoPagamento",
-            fetch = FetchType.LAZY)
-    private Fattura fattura;
+    @OneToMany(mappedBy = "metodoPagamento", fetch = FetchType.LAZY)
+    private List<Fattura> fatture = new ArrayList<Fattura>();
 
     public MetodoPagamento(){
 
@@ -29,5 +30,9 @@ public class MetodoPagamento {
     public void setMetodoPagamento(String metodoPagamento) {
         this.metodoPagamento = metodoPagamento;
     }
+
+    public List<Fattura> getFatture() {return fatture;}
+
+    public void setFatture (List<Fattura> fatture) { this.fatture = fatture;}
 }
 

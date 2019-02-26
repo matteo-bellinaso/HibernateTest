@@ -12,6 +12,9 @@ public class Ordine {
     @Column (name = "idOrdine")
     private Integer idOrdine;
 
+    @OneToOne(mappedBy = "ordine" , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Fattura fattura;
+
     @Column(name = "dataOrdine", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataOrdine;
@@ -63,5 +66,9 @@ public class Ordine {
     public void setStato(String stato) {
         this.stato = stato;
     }
+
+    public Fattura getFattura() { return fattura; }
+
+    public void setFattura(Fattura fattura){this.fattura = fattura;}
 
 }
