@@ -1,6 +1,13 @@
 package entities;
 
+<<<<<<< Updated upstream
 import marketing.classes.*;
+=======
+import marketing.classes.Categoria;
+import marketing.classes.Prodotto;
+import marketing.classes.ProdottoUtente;
+import marketing.classes.Utente;
+>>>>>>> Stashed changes
 import org.junit.Test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,10 +18,11 @@ import utils.TestUtil;
 
 public class ManyToManyTest extends TestUtil {
 
+    /*
     @Test
     public void insertProdottoUtente() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Prodotto prodotto = new Prodotto("Cover", 5, 10.0, 5, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"),  dateFormat.parse("2019-02-30"));
+        Prodotto prodotto = new Prodotto("Cover", 5, 10.0, null, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"),  dateFormat.parse("2019-02-30"));
         Utente utente = new Utente("Gabriele", "Moia", "vdbfuegrnth", "vufesbgjrnthm");
         ProdottoUtente prodottoUtente = new ProdottoUtente();
         prodottoUtente.setUtente(utente);
@@ -26,7 +34,16 @@ public class ManyToManyTest extends TestUtil {
         em.persist(utente);
         em.getTransaction().commit();
     }
+    */
 
+    @Test
+    public void categoriaProdotto() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Categoria categoria = new Categoria("telefonia", 101);
+        Prodotto prodotto = new Prodotto("Cover", 5, 10.0, categoria, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"),  dateFormat.parse("2019-02-30"));
+        prodotto.setIdCategoria(categoria);
+
+<<<<<<< Updated upstream
     @Test
     public void insertProdottoEvento() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -55,12 +72,15 @@ public class ManyToManyTest extends TestUtil {
         fornitura.setDate(new Date());
         fornitura.setQuantita(3);
         f.addFornitura(fornitura);
+=======
+>>>>>>> Stashed changes
         em.getTransaction().begin();
-        em.persist(p);
-        em.persist(f);
+        em.persist(prodotto);
+        em.persist(categoria);
         em.getTransaction().commit();
     }
 
+    /*
     @Test
     public void insertAlreadyExisting() {
         Prodotto p = getProdotto(1);

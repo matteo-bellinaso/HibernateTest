@@ -65,7 +65,7 @@ public class Prodotto {
     public Prodotto(String nome,
                     Integer idProduttore,
                     Double prezzo,
-                    Integer idCategorie,
+                    Categoria idCategorie,
                     String descrizione,
                     String misure,
                     Double peso,
@@ -77,7 +77,7 @@ public class Prodotto {
         this.nome = nome;
         this.idProduttore = idProduttore;
         this.prezzo = prezzo;
-        this.idCategorie = idCategorie;
+        this.idCategoria = idCategorie;
         this.descrizione = descrizione;
         this.misure = misure;
         this.peso = peso;
@@ -119,12 +119,12 @@ public class Prodotto {
         this.prezzo = prezzo;
     }
 
-    public Integer getIdCategorie() {
-        return idCategorie;
+    public Categoria getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setIdCategorie(Integer idCategorie) {
-        this.idCategorie = idCategorie;
+    public void setIdCategoria(Categoria idCategorie) {
+        this.idCategoria = idCategorie;
     }
 
     public String getDescrizione() {
