@@ -1,6 +1,8 @@
 package marketing.classes;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "sconto")
@@ -17,9 +19,10 @@ public class Sconto {
     @Column(name = "commento")
     private String commento;
 
-    public Sconto() {
+    @OneToMany(mappedBy = "primaryKey.sconto", cascade = CascadeType.ALL)
+    private List<ProdottoSconto> prodottoSconto = new ArrayList<ProdottoSconto>();
 
-    }
+    public Sconto() { }
 
     public Sconto(Integer percentuale, String commento) {
         this.percentuale = percentuale;
@@ -50,6 +53,17 @@ public class Sconto {
         this.commento = commento;
     }
 
+    public List<ProdottoSconto> getProdottoSconto() {
+        return prodottoSconto;
+    }
+
+    public void setProdottoSconto(List<ProdottoSconto> prodottoSconto) {
+        this.prodottoSconto = prodottoSconto;
+    }
+
+    public void addProdottoSconto(ProdottoSconto ps) {
+        prodottoSconto.add(ps);
+    }
 
 }
 
