@@ -1,5 +1,7 @@
 package restServicesConf;
 
+import marketing.classes.rest.HelloRestService;
+
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
@@ -11,7 +13,7 @@ public class RestEasyServices extends Application {
 
     //aggiungere tutte le classi che espongono servizi al singleton
     public RestEasyServices() {
-
+        singletons.add(new HelloRestService());
     }
 
     @Override
