@@ -13,7 +13,7 @@ import utils.TestUtil;
 public class ManyToManyTest extends TestUtil {
 
     @Test
-    public void insertProdottoUtente() throws ParseException {
+    public void insert1() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Prodotto prodotto = new Prodotto("Cover", 5, 10.0, 5, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"), dateFormat.parse("2019-02-30"));
         Utente utente = new Utente("Gabriele", "Moia", "vdbfuegrnth", "vufesbgjrnthm");
@@ -63,13 +63,14 @@ public class ManyToManyTest extends TestUtil {
 
     //cancella anche dalla tabella di relazione
     @Test
-    public void testDeleteUtente() {
-        Utente f = em.find(Utente.class, 1);
+    public void testDeleteFornitore() {
+        Fornitore f = em.find(Fornitore.class, 2);
         em.getTransaction().begin();
         em.remove(f);
         em.getTransaction().commit();
     }
 
+    //se si us il mapped anziche il join column si rompe quando cerchi di cancellare l'entità perchè violi i vincoli di chiave esterna
     @Test
     public void testDeleteProdotto() {
         Prodotto f = em.find(Prodotto.class, 1);

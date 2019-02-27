@@ -70,7 +70,7 @@ public class Categoria {
     @PreRemove
     public void removeForeignKey() {
         for (Prodotto prodotto : prodotti) {
-            prodotto.setIdCategoria(null);
+            prodotto.setCategoria(null);
         }
     }
 

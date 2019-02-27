@@ -7,7 +7,7 @@
 
         <properties>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://10.9.129.35:3306/marketing_efintus"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://10.9.129.20:3306/marketing_efintus"/>
             <property name="hibernate.connection.autocommit" value="false"/>
             <property name="hibernate.connection.username" value="fintus"/>
             <property name="hibernate.connection.password" value="P@ssword2018$"/>
