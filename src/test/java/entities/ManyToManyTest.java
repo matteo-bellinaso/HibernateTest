@@ -15,7 +15,9 @@ public class ManyToManyTest extends TestUtil {
     @Test
     public void insert1() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Prodotto prodotto = new Prodotto("Cover", 5, 10.0, 5, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"), dateFormat.parse("2019-02-30"));
+        Categoria categoria = new Categoria("telefonia", 101);
+        Prodotto prodotto = new Prodotto("Coverrr", 5, 10.0, "Cover di Plastica", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"), dateFormat.parse("2019-02-30"));
+        prodotto.setCategoria(categoria);
         Utente utente = new Utente("Gabriele", "Moia", "vdbfuegrnth", "vufesbgjrnthm");
         ProdottoUtente prodottoUtente = new ProdottoUtente();
         prodottoUtente.setUtente(utente);

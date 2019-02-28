@@ -68,6 +68,8 @@ public class Prodotto {
     @OneToMany(mappedBy = "prodotto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ProdottoSconto> prodottoSconto = new ArrayList<ProdottoSconto>();
 
+
+
     public Prodotto() {
 
     }

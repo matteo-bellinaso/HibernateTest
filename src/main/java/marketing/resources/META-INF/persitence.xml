@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="marketing">
+        <class>marketing.classes.Fattura</class>
+        <class>marketing.classes.Categoria</class>
+        <class>marketing.classes.Evento</class>
+        <class>marketing.classes.MetodoPagamento</class>
+        <class>marketing.classes.Ordine</class>
+        <class>marketing.classes.Prodotto</class>
+        <class>marketing.classes.ProdottoUtente</class>
+        <class>marketing.classes.ProdottoEvento</class>
+        <class>marketing.classes.ProdottoOrdine</class>
+        <class>marketing.classes.ProdottoSconto</class>
+        <class>marketing.classes.Recensione</class>
+        <class>marketing.classes.Sconto</class>
+        <class>marketing.classes.Tag</class>
+        <class>marketing.classes.TagProdotto</class>
+        <class>marketing.classes.Utente</class>
+
+        <properties>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <!--Real Implementation
+            <property name="hibernate.connection.url" value="jdbc:mysql://10.9.129.35/logistica"/>
+            <property name="hibernate.connection.username" value="fintus"/>
+            <property name="hibernate.connection.password" value="P@ssword2018$"/>-->
+
+            <!--Test Implementation-->
+            <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/marketing"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="root"/>
+
+
+            <property name="hibernate.connection.autocommit" value="false"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.connection.CharSet" value="utf8"/>
+            <property name="hibernate.connection.characterEncoding" value="utf8"/>
+            <property name="hibernate.connection.useUnicode" value="true"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+        </properties>
+
+
+    </persistence-unit>
+</persistence>
