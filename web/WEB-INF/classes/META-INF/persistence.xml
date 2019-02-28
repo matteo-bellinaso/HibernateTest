@@ -3,7 +3,10 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-    <persistence-unit name="marketing">
+    <persistence-unit name="marketing" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
+        <jta-data-source>java:jboss/datasource/MySqlDS</jta-data-source>
         <class>marketing.classes.Fattura</class>
         <class>marketing.classes.Categoria</class>
         <class>marketing.classes.Evento</class>
@@ -26,12 +29,6 @@
             <property name="hibernate.connection.url" value="jdbc:mysql://10.9.129.35/logistica"/>
             <property name="hibernate.connection.username" value="fintus"/>
             <property name="hibernate.connection.password" value="P@ssword2018$"/>-->
-
-            <!--Test Implementation-->
-            <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/marketing"/>
-            <property name="hibernate.connection.username" value="root"/>
-            <property name="hibernate.connection.password" value="root"/>
-
 
             <property name="hibernate.connection.autocommit" value="false"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
