@@ -12,7 +12,7 @@ import java.util.Queue;
 
 public class UtenteDaoImpl extends JpaDao<Utente> implements UtenteDao {
 
-    private String baseQueryNoRel = "SELECT NEW Utente(u.nome, u.cognome, u.email, u.pIva) FROM Utente u"; //JOIN FETCH c.ordini
+    private String query = "SELECT NEW Utente(u.nome, u.cognome, u.email, u.pIva) FROM Utente u"; //JOIN FETCH c.ordini
 
     public UtenteDaoImpl() {
         super(Utente.class);
@@ -21,10 +21,10 @@ public class UtenteDaoImpl extends JpaDao<Utente> implements UtenteDao {
     @Override
     public Utente getById(Integer id) {
         EntityManager em = init();
-        String queryString = baseQueryNoRel;
-        queryString += " WHERE u.id=:id";
+        String getIdQuery = query;
+        getIdQuery += " WHERE u.id=:id";
 
-        Query query = em.createQuery(queryString);
+        Query query = em.createQuery(getIdQuery);
         query.setParameter("id", id);
 
         List<Utente> results;
@@ -41,8 +41,8 @@ public class UtenteDaoImpl extends JpaDao<Utente> implements UtenteDao {
     public List<Utente> getAll() {
         EntityManager em = init();
         List<Utente> results;
-
-        Query query = em.createQuery(baseQueryNoRel);
+        String getAll = query;
+        Query query = em.createQuery(getAll);
         results = query.getResultList();
         if (results.isEmpty()) {
             results = null;
@@ -50,11 +50,6 @@ public class UtenteDaoImpl extends JpaDao<Utente> implements UtenteDao {
         em.close();
         // Em.closeEntityManager(em);
         return results;
-    }
-
-    @Override
-    public List<ProdottoUtente> getByIdUtente() {
-        return null;
     }
 }
 

@@ -10,6 +10,4 @@ public interface UtenteDao {
     Utente getById(Integer id);
 
     List<Utente> getAll();
-
-    List<ProdottoUtente> getByIdUtente();
 }
