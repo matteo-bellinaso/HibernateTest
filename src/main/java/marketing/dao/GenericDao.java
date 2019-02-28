@@ -27,7 +27,6 @@ public abstract class GenericDao<T>  implements Dao<T> {
 
     public List<T> queryAll(Query query) {
         List<T> results = query.getResultList();
-        closeEm();
         if (!results.isEmpty()) {
            return results;
         } else {

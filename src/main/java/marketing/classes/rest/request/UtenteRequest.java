@@ -75,31 +75,31 @@ public class UtenteRequest implements Serializable {
         this.pIva = pIva;
     }
 
-//    @JsonGetter
-//    public List<ProdottoUtente> getVisite() {
-//        return visite;
-//    }
+    @JsonGetter
+    public List<ProdottoUtente> getVisite() {
+        return visite;
+    }
 
-//    @JsonSetter
-//    public void setVisite(List<ProdottoUtente> visite) {
-//        this.visite = visite;
-//    }
-//
-//    public void addVisite (ProdottoUtente visita) {
-//        this.visite.add(visita);
-//    }
-//
-//    @JsonGetter
-//    public List<Ordine> getOrdini() {
-//        return ordini;
-//    }
-//
-//    @JsonSetter
-//    public void setOrdini(List<Ordine> ordini) {
-//        this.ordini = ordini;
-//    }
-//
-//    public void addVisite (Ordine ordine) {
-//        this.ordini.add(ordine);
-//    }
+    @JsonSetter
+    public void setVisite(List<ProdottoUtente> visite) {
+        this.visite = visite;
+    }
+
+    public void addVisite (ProdottoUtente visita) {
+        this.visite.add(visita);
+    }
+
+    @JsonGetter
+    public List<Ordine> getOrdini() {
+        return ordini;
+    }
+
+    @JsonSetter
+    public void setOrdini(List<Ordine> ordini) {
+        this.ordini = ordini;
+    }
+
+    public void addVisite (Ordine ordine) {
+        this.ordini.add(ordine);
+    }
 }

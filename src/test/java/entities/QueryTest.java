@@ -92,7 +92,7 @@ public class QueryTest {
 
         ProdottoUtenteDao puDao = new ProdottoUtenteDao();
 
-        List<ProdottoUtente> list = puDao.getByIdUtente(utente);
+        List<ProdottoUtente> list = puDao.getByIdUtente(3);
 
         for(ProdottoUtente item : list) {
             System.out.println(item.getDate());

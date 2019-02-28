@@ -1,5 +1,6 @@
 package marketing.classes.rest;
 import marketing.classes.rest.request.UtenteRequest;
+import marketing.classes.rest.response.ProdottoUtenteResponse;
 import marketing.classes.rest.response.UtenteResponse;
 import marketing.dao.UtenteDaoImpl;
 
@@ -35,5 +36,20 @@ public class UtenteEndPoint {
         }
         response.setUtenti(utenteDao.getAll());
         return response;
+    }
+
+    @GET
+    @Path("/getVisita")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ProdottoUtenteResponse getVisita(){
+        ProdottoUtenteResponse prodottoUtenteResponse = new ProdottoUtenteResponse();
+        if(utenteDao.getByIdUtente()==null){
+            System.out.println("------------------- NULLOO");
+        }else{
+            System.out.println("---------  Response utente   ------------" + utenteDao.getAll());
+        }
+        prodottoUtenteResponse.setProdotti(utenteDao.getByIdUtente());
+        return prodottoUtenteResponse;
     }
 }

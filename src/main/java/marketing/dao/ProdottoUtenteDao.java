@@ -2,7 +2,6 @@ package marketing.dao;
 
 import marketing.classes.ProdottoUtente;
 import marketing.classes.Utente;
-import net.bytebuddy.dynamic.scaffold.TypeWriter;
 
 import javax.persistence.Query;
 import java.sql.SQLException;
@@ -31,9 +30,9 @@ public class ProdottoUtenteDao extends GenericDao<ProdottoUtente> {
         return queryAll(query);
     }
 
-    public List<ProdottoUtente> getByIdUtente(Utente i) {
+    public List<ProdottoUtente> getByIdUtente(Integer i) {
         Query query = getEm().createQuery("FROM ProdottoUtente as p where  p.primaryKey.utente.id = :idUtente");
-        query.setParameter("idUtente", i.getId());
+        query.setParameter("idUtente", i);
         return queryAll(query);
     }
     public List<ProdottoUtente> getByIdProdotto(ProdottoUtente i) {

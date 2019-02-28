@@ -1,12 +1,14 @@
 package marketing.dao;
 
 import Utility.Em;
+import marketing.classes.ProdottoUtente;
 import marketing.classes.Utente;
 import marketing.interfaces.UtenteDao;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class UtenteDaoImpl extends JpaDao<Utente> implements UtenteDao {
 
@@ -18,10 +20,21 @@ public class UtenteDaoImpl extends JpaDao<Utente> implements UtenteDao {
 
     @Override
     public Utente getById(Integer id) {
-        EntityManager em = Em.createEntityManager();
-        Utente utente = em.find(Utente.class, id);
-        Em.closeEntityManager();
-        return utente;
+        EntityManager em = init();
+        String queryString = baseQueryNoRel;
+        queryString += " WHERE u.id=:id";
+
+        Query query = em.createQuery(queryString);
+        query.setParameter("id", id);
+
+        List<Utente> results;
+        results = query.getResultList();
+        Utente result;
+        if (results.isEmpty()) {
+            results = null;
+        }
+
+        return results.get(0);
     }
 
     @Override
@@ -37,6 +50,11 @@ public class UtenteDaoImpl extends JpaDao<Utente> implements UtenteDao {
         em.close();
         // Em.closeEntityManager(em);
         return results;
+    }
+
+    @Override
+    public List<ProdottoUtente> getByIdUtente() {
+        return null;
     }
 }
 
