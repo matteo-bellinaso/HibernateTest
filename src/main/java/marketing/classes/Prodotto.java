@@ -62,10 +62,10 @@ public class Prodotto {
     @OneToMany(mappedBy = "prodotto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Recensione> recensioni = new ArrayList<Recensione>();
 
-    @OneToMany(mappedBy = "prodotto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "primaryKey.prodotto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TagProdotto> tagProdotto = new ArrayList<TagProdotto>();
 
-    @OneToMany(mappedBy = "prodotto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "primaryKey.prodotto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ProdottoSconto> prodottoSconto = new ArrayList<ProdottoSconto>();
 
 

@@ -1,11 +1,13 @@
 package entities;
 
 import marketing.classes.*;
+import marketing.dao.UtenteDaoImpl;
 import org.junit.Test;
 import utils.TestUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class OneToManyTest extends TestUtil {
     @Test
@@ -89,5 +91,12 @@ public class OneToManyTest extends TestUtil {
         em.getTransaction().begin();
         em.remove(f);
         em.getTransaction().commit();
+    }
+
+    @Test
+    public void testAll(){
+        UtenteDaoImpl dao = new UtenteDaoImpl();
+        List<Utente> utenti = dao.getAll();
+        System.out.println(utenti.size());
     }
 }

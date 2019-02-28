@@ -33,7 +33,7 @@ public class ManyToManyTest extends TestUtil {
     @Test
     public void insertProdottoEvento() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Prodotto prodotto = new Prodotto("Mele", 5, 10.0, 5, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"), dateFormat.parse("2019-02-30"));
+        Prodotto prodotto = new Prodotto("Mele", 5, 10.0, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"), dateFormat.parse("2019-02-30"));
         Evento evento = new Evento();
         evento.setNome("Natale");
         evento.setDataInizio(dateFormat.parse("2019-12-04"));
@@ -51,7 +51,7 @@ public class ManyToManyTest extends TestUtil {
     @Test
     public void insertProdottoOrdine() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Prodotto prodotto = new Prodotto("Cactus", 5, 10.0, 5, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"), dateFormat.parse("2019-02-30"));
+        Prodotto prodotto = new Prodotto("Cactus", 5, 10.0, "Cover di platino", "15*5*10", 0.5, "nero", "qefwrgtrhytjuy", dateFormat.parse("2019-02-25"), dateFormat.parse("2019-02-30"));
         Ordine ordine = new Ordine(dateFormat.parse("2018-05-18"), "Consegnato");
         ProdottoOrdine prodottoOrdine = new ProdottoOrdine();
         prodottoOrdine.setOrdine(ordine);
@@ -62,16 +62,6 @@ public class ManyToManyTest extends TestUtil {
         em.persist(ordine);
         em.getTransaction().commit();
     }
-
-    //cancella anche dalla tabella di relazione
-    @Test
-    public void testDeleteFornitore() {
-        Fornitore f = em.find(Fornitore.class, 2);
-        em.getTransaction().begin();
-        em.remove(f);
-        em.getTransaction().commit();
-    }
-
     //se si us il mapped anziche il join column si rompe quando cerchi di cancellare l'entità perchè violi i vincoli di chiave esterna
     @Test
     public void testDeleteProdotto() {

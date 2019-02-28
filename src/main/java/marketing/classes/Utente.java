@@ -1,12 +1,15 @@
 package marketing.classes;
 
+import marketing.interfaces.Orm;
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "utente")
-public class Utente {
+public class Utente implements Orm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +28,15 @@ public class Utente {
     @Column(name = "pIva")
     private String pIva;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "primaryKey.utente", cascade = CascadeType.ALL)
     private List<ProdottoUtente> visite = new ArrayList<ProdottoUtente>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "utente", fetch = FetchType.LAZY)
     private List<Ordine> ordini = new ArrayList<Ordine>();
 
-    public Utente() {
+    public Utente(){
 
     }
 

@@ -1,5 +1,7 @@
 package marketing.classes;
 
+import marketing.interfaces.Orm;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "evento")
-public class Evento {
+public class Evento implements Orm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
