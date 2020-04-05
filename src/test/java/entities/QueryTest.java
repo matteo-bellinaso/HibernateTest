@@ -85,21 +85,6 @@ public class QueryTest {
     }
 
     @Test
-    public void getVisite() throws SQLException {
-        Utente user = new Utente();
-        user.setId(4);
-        Utente utente = new UtenteDao().getById(user);
-
-        ProdottoUtenteDao puDao = new ProdottoUtenteDao();
-
-        List<ProdottoUtente> list = puDao.getByIdUtente(3);
-
-        for(ProdottoUtente item : list) {
-            System.out.println(item.getDate());
-        }
-    }
-
-    @Test
     public void tag() {
         Tag tag = new Tag("cellulare");
         TagDao tagDao = new TagDao();

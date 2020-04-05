@@ -30,9 +30,9 @@ public class ProdottoUtenteDao extends GenericDao<ProdottoUtente> {
         return queryAll(query);
     }
 
-    public List<ProdottoUtente> getByIdUtente(Integer i) {
-        Query query = getEm().createQuery("FROM ProdottoUtente as p where  p.primaryKey.utente.id = :idUtente");
-        query.setParameter("idUtente", i);
+    public List<ProdottoUtente> getByIdUtente(Utente i) {
+        Query query = getEm().createQuery("FROM ProdottoUtente as p where  p.primaryKey.utente.id = :idUtente ");
+        query.setParameter("idUtente", i.getId());
         return queryAll(query);
     }
     public List<ProdottoUtente> getByIdProdotto(ProdottoUtente i) {
